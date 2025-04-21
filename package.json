@@ -1,0 +1,17 @@
+{
+  "name": "mjkumar.github.io",
+  "version": "1.0.0",
+  "description": "This repository is created to explore Git Hub Page cpabilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"tsc",
+    "watch":"tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Status Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Team Status Tracker</h1>
+        <p>Track and report team progress efficiently</p>
+    </header>
+
+    <div class="tab-container">
+        <div class="tab-buttons">
+            <button class="tab-button" data-target="team-tab">Team Members</button>
+            <button class="tab-button" data-target="status-tab">Status Updates</button>
+            <button class="tab-button" data-target="reports-tab">Reports</button>
+            <button class="tab-button" data-target="settings-tab">Settings</button>
+        </div>
+
+        <div class="tab-contents">
+            <!-- Team Members Tab -->
+            <div id="team-tab" class="tab-content">
+                <div class="split-container">
+                    <div class="left-panel">
+                        <h2>Add/Edit Team Member</h2>
+                        <form id="team-member-form" class="form-container">
+                            <input type="hidden" id="member-id">
+                            
+                            <div class="form-group">
+                                <label for="member-name">Name</label>
+                                <input type="text" id="member-name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="member-role">Role</label>
+                                <input type="text" id="member-role" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="member-department">Department</label>
+                                <input type="text" id="member-department" required>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary">Save Team Member</button>
+                                <button type="reset" class="btn secondary">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="right-panel">
+                        <h2>Team Members</h2>
+                        <div id="team-members-list" class="cards-container">
+                            <!-- Team members will be loaded here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Updates Tab -->
+            <div id="status-tab" class="tab-content">
+                <div class="split-container">
+                    <div class="left-panel">
+                        <h2>Add/Edit Status Update</h2>
+                        <form id="status-form" class="form-container">
+                            <input type="hidden" id="status-id">
+                            
+                            <div class="form-group">
+                                <label for="status-member">Team Member</label>
+                                <select id="status-member" required>
+                                    <option value="">Select Team Member</option>
+                                    <!-- Team members will be loaded here dynamically -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status-date">Date</label>
+                                <input type="date" id="status-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status-accomplishments">Accomplishments</label>
+                                <textarea id="status-accomplishments" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status-challenges">Challenges</label>
+                                <textarea id="status-challenges" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status-next-steps">Next Steps</label>
+                                <textarea id="status-next-steps" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status-risk">Risk Level</label>
+                                <select id="status-risk" required>
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status-notes">Additional Notes</label>
+                                <textarea id="status-notes"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary">Save Status Update</button>
+                                <button type="reset" class="btn secondary">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="right-panel">
+                        <h2>Recent Status Updates</h2>
+                        <p>Select a team member to view their status history or enter a new status update.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Tab -->
+            <div id="reports-tab" class="tab-content">
+                <h2>Generate Reports</h2>
+                
+                <div class="split-container">
+                    <div class="left-panel">
+                        <div class="report-options">
+                            <div class="report-section">
+                                <h3>Bi-weekly Report</h3>
+                                <div class="form-group">
+                                    <label for="biweekly-start-date">Start Date</label>
+                                    <input type="date" id="biweekly-start-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="biweekly-end-date">End Date</label>
+                                    <input type="date" id="biweekly-end-date" required>
+                                </div>
+                                <button id="generate-biweekly" class="btn primary">Generate Bi-weekly Report</button>
+                            </div>
+                            
+                            <div class="report-section">
+                                <h3>Monthly Report</h3>
+                                <div class="form-group">
+                                    <label for="monthly-start-date">Start Date</label>
+                                    <input type="date" id="monthly-start-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="monthly-end-date">End Date</label>
+                                    <input type="date" id="monthly-end-date" required>
+                                </div>
+                                <button id="generate-monthly" class="btn primary">Generate Monthly Report</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="right-panel">
+                        <h3>Report Output</h3>
+                        <div id="report-output" class="report-container">
+                            <p>Select date range and generate a report to view it here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <h2>Settings</h2>
+                
+                <div class="settings-section">
+                    <h3>Data Management</h3>
+                    <p>Export or import your team status data.</p>
+                    
+                    <div class="button-group">
+                        <button id="export-data" class="btn primary">Export Data</button>
+                        <button id="import-data" class="btn secondary">Import Data</button>
+                    </div>
+                    
+                    <div class="settings-info">
+                        <h4>About Data Storage</h4>
+                        <p>All data is stored locally in your browser. Exporting your data regularly is recommended to prevent data loss.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying member status -->
+    <div id="modal" class="modal">
+        <div class="modal-container">
+            <button class="close-modal" onclick="document.getElementById('modal').classList.remove('show')">×</button>
+            <div id="modal-content">
+                <!-- Modal content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Module Imports -->
+    <script type="module" src="dist/models.js"></script>
+    <script type="module" src="dist/statusService.js"></script>
+    <script type="module" src="dist/reportGenerator.js"></script>
+    <script type="module" src="dist/app.js"></script>
+</body>
+</html>
+
+<!-- Modal for displaying member status -->
+<div id="modal" class="modal">
+    <div class="modal-container">
+        <button class="close-modal" onclick="document.getElementById('modal').classList.remove('show')">×</button>
+        <div id="modal-content">
+            <!-- Modal content will be loaded dynamically -->
+        </div>
+    </div>
+</div>
